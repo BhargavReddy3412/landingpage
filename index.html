@@ -814,7 +814,7 @@
               Give us a chance to help you figure out how your export process
               can be simplified with Expodite.
             </p>
-            <form id="contactForm">
+            <form id="modalContactForm">
               <div class="form-row">
                 <div class="form-group full-width">
                   <label>First Name <span class="required">*</span></label>
@@ -822,7 +822,7 @@
                     type="text"
                     placeholder="First Name"
                     name="firstName"
-                    id="firstName"
+                    id="modal-firstName"
                     required
                   />
                 </div>
@@ -836,7 +836,7 @@
                     <input
                       type="tel"
                       name="phone"
-                      id="phone"
+                      id="modal-phone"
                       placeholder="Phone Number"
                       pattern="[0-9]{10}"
                       required
@@ -847,7 +847,7 @@
                   <label>Email <span class="required">*</span></label>
                   <input
                     type="email"
-                    id="email"
+                    id="modal-email"
                     name="email"
                     placeholder="example@domain.com"
                     required
@@ -859,7 +859,7 @@
                 <label>Company Name <span class="required">*</span></label>
                 <input
                   type="text"
-                  id="company"
+                  id="modal-company"
                   name="company"
                   placeholder="Your company name"
                   required
@@ -871,14 +871,14 @@
                 <textarea
                   placeholder="Any specific requirements or questions?"
                   name="additionalInfo"
-                  id="additionalInfo"
+                  id="modal-additionalInfo"
                 ></textarea>
               </div>
 
-              <div class="recaptcha-box" id="captchaBox">
+               <div class="recaptcha-box" id="modal-captchaBox">
                 <div class="checkbox-container">
-                  <div class="checkbox" id="checkbox">
-                    <div class="box" id="box"></div>
+                  <div class="checkbox" id="modal-checkbox">
+                    <div class="box" id="modal-box"></div>
                   </div>
                   <span class="captcha-label">I'm not a robot</span>
                 </div>
@@ -891,8 +891,8 @@
                     <a href="#">Privacy</a> - <a href="#">Terms</a>
                   </div>
                 </div>
-              </div>
-
+              </div> 
+  
               <button class="form-button" type="submit">Submit</button>
             </form>
           </div>
@@ -1091,71 +1091,97 @@
 
       // CAPTCHA logic
 
-      const captchaBox = document.getElementById("captchaBox");
-      const checkbox = document.getElementById("checkbox");
-      const box = document.getElementById("box");
+      // const captchaBox = document.getElementById("captchaBox");
+      // const checkbox = document.getElementById("checkbox");
+      // const box = document.getElementById("box");
 
-      let isChecked = false;
-      let isProcessing = false;
+      // let isChecked = false;
+      // let isProcessing = false;
 
-      captchaBox.addEventListener("click", () => {
-        if (isChecked || isProcessing) return;
+      // captchaBox.addEventListener("click", () => {
+      //   if (isChecked || isProcessing) return;
 
-        isProcessing = true;
-        checkbox.innerHTML = `<div class="spinner"></div>`;
-        captchaBox.classList.add("disabled");
+      //   isProcessing = true;
+      //   checkbox.innerHTML = `<div class="spinner"></div>`;
+      //   captchaBox.classList.add("disabled");
 
-        setTimeout(() => {
-          checkbox.innerHTML = `<div class="tick">&#10004;</div>`;
-          isChecked = true;
-          isProcessing = false;
-        }, 1500);
-      });
+      //   setTimeout(() => {
+      //     checkbox.innerHTML = `<div class="tick">&#10004;</div>`;
+      //     isChecked = true;
+      //     isProcessing = false;
+      //   }, 1500);
+      // });
 
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
 
-          if (!isChecked) {
-            alert(
-              "Please confirm you're not a robot by clicking the checkbox."
-            );
-            return false;
-          }
 
-          const formData = {
-            firstName: document.getElementById("firstName").value,
-            phone: document.getElementById("phone").value,
-            email: document.getElementById("email").value,
-            company: document.getElementById("company").value,
-            additionalInfo: document.getElementById("additionalInfo").value,
-          };
+      //  const ModalcaptchaBox = document.getElementById("modal-captchaBox");
+      // const Modalcheckbox = document.getElementById("modal-checkbox");
+      // const Modalbox = document.getElementById("modal-box");
 
-          try {
-            // Send to your local server
-            const response = await fetch("http://localhost:3000/send-email", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            });
+      // ModalcaptchaBox.addEventListener("click", () => {
+      //   if (isChecked || isProcessing) return;
 
-            const result = await response.text();
+      //   isProcessing = true;
+      //   Modalcheckbox.innerHTML = `<div class="spinner"></div>`;
+      //   ModalcaptchaBox.classList.add("disabled");
 
-            if (response.ok) {
-              // ✅ Only show success if both submissions work
-              console.log("Email sent successfully");
-            } else {
-              alert(" Failed to send email: " + result);
-              return;
-            }
-          } catch (error) {
-            console.error("Email Error:", error);
-            alert("Network error during email submission.");
-            return;
-          }
+      //   setTimeout(() => {
+      //     Modalcheckbox.innerHTML = `<div class="tick">&#10004;</div>`;
+      //     isChecked = true;
+      //     isProcessing = false;
+      //   }, 1500);
+      // });
+
+
+
+
+
+
+
+      // document
+      //   .getElementById("contactForm")
+      //   .addEventListener("submit", async (e) => {
+      //     e.preventDefault();
+
+      //     if (!isChecked) {
+      //       alert(
+      //         "Please confirm you're not a robot by clicking the checkbox."
+      //       );
+      //       return false;
+      //     }
+
+      //     const formData = {
+      //       firstName: document.getElementById("firstName").value,
+      //       phone: document.getElementById("phone").value,
+      //       email: document.getElementById("email").value,
+      //       company: document.getElementById("company").value,
+      //       additionalInfo: document.getElementById("additionalInfo").value,
+      //     };
+
+      //     try {
+
+      //       const response = await fetch("http://localhost:3000/send-email", {
+      //         method: "POST",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //         body: JSON.stringify(formData),
+      //       });
+
+      //       const result = await response.text();
+
+      //       if (response.ok) {
+          
+      //         console.log("Email sent successfully");
+      //       } else {
+      //         alert(" Failed to send email: " + result);
+      //         return;
+      //       }
+      //     } catch (error) {
+      //       console.error("Email Error:", error);
+      //       alert("Network error during email submission.");
+      //       return;
+      //     }
 
           // try {
           //   // Send to Google Sheets
@@ -1182,10 +1208,156 @@
           //   console.log(err)
           //   alert(" Error sending to Google Sheet.");
           // }
-        });
+        // });
 
 
 
+
+// ------------------------ Main Form Captcha Logic ------------------------
+  let isCheckedMain = false;
+  let isProcessingMain = false;
+
+  const captchaBox = document.getElementById("captchaBox");
+  const checkbox = document.getElementById("checkbox");
+
+  captchaBox?.addEventListener("click", () => {
+    if (isCheckedMain || isProcessingMain) return;
+    isProcessingMain = true;
+    checkbox.innerHTML = `<div class="spinner"></div>`;
+    captchaBox.classList.add("disabled");
+
+    setTimeout(() => {
+      checkbox.innerHTML = `<div class="tick">&#10004;</div>`;
+      isCheckedMain = true;
+      isProcessingMain = false;
+    }, 1500);
+  });
+
+  document.getElementById("contactForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!isCheckedMain) {
+      alert("Please confirm you're not a robot by clicking the checkbox.");
+      return;
+    }
+
+    const formData = {
+      firstName: document.getElementById("firstName").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      company: document.getElementById("company").value,
+      additionalInfo: document.getElementById("additionalInfo").value,
+    };
+
+    await sendFormData(formData, "main");
+  });
+
+  // ------------------------ Modal Captcha Logic ------------------------
+  let isCheckedModal = false;
+  let isProcessingModal = false;
+
+  const modalCaptchaBox = document.getElementById("modal-captchaBox");
+  const modalCheckbox = document.getElementById("modal-checkbox");
+
+  modalCaptchaBox?.addEventListener("click", () => {
+    if (isCheckedModal || isProcessingModal) return;
+    isProcessingModal = true;
+    modalCheckbox.innerHTML = `<div class="spinner"></div>`;
+    modalCaptchaBox.classList.add("disabled");
+
+    setTimeout(() => {
+      modalCheckbox.innerHTML = `<div class="tick">&#10004;</div>`;
+      isCheckedModal = true;
+      isProcessingModal = false;
+    }, 1500);
+  });
+
+  document.getElementById("modalContactForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!isCheckedModal) {
+      alert("Please confirm you're not a robot in the modal form.");
+      return;
+    }
+
+    const formData = {
+      firstName: document.getElementById("modal-firstName").value,
+      phone: document.getElementById("modal-phone").value,
+      email: document.getElementById("modal-email").value,
+      company: document.getElementById("modal-company").value,
+      additionalInfo: document.getElementById("modal-additionalInfo").value,
+    };
+
+    await sendFormData(formData, "modal");
+  });
+
+  // ------------------------ Shared API Submit Function ------------------------
+  // async function sendFormData(formData) {
+  //   try {
+  //     const response = await fetch("http://localhost:3000/send-email", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     const result = await response.text();
+  //     if (response.ok) {
+  //       alert("Email sent successfully!");
+  //     } else {
+  //       alert("Failed to send email: " + result);
+  //     }
+  //   } catch (error) {
+  //     console.error("Email Error:", error);
+  //     alert("Network error during email submission.");
+  //   }
+  // }
+
+async function sendFormData(formData, formType) {
+  try {
+    const response = await fetch("http://localhost:3000/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.text();
+    if (response.ok) {
+      alert("Email sent successfully!");
+
+      if (formType === "modal") {
+        // Close Bootstrap modal
+        const modalElement = document.getElementById("demoModal");
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        modalInstance.hide();
+
+        // Reset modal form and captcha
+        document.getElementById("modalContactForm").reset();
+        isCheckedModal = false;
+        isProcessingModal = false;
+        document.getElementById("modal-checkbox").innerHTML = `<div class="box" id="modal-box"></div>`;
+        document.getElementById("modal-captchaBox").classList.remove("disabled");
+
+      } else if (formType === "main") {
+        // Reset main form and captcha
+        document.getElementById("contactForm").reset();
+        isCheckedMain = false;
+        isProcessingMain = false;
+        document.getElementById("checkbox").innerHTML = `<div class="box" id="box"></div>`;
+        document.getElementById("captchaBox").classList.remove("disabled");
+      }
+
+    } else {
+      alert("Failed to send email: " + result);
+    }
+  } catch (error) {
+    console.error("Email Error:", error);
+    alert("Network error during email submission.");
+  }
+}
 
 
 
